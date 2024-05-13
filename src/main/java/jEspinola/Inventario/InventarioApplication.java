@@ -17,7 +17,7 @@ public class InventarioApplication {
 	 * Método para configurar el CORS (Cross-Origin Resource Sharing)
 	 * Esto es necesario para que Angular pueda hacer peticiones a este servidor
 	 * Despues de todo un dia buscando, este tio me acaba de salvar
-	 * Al usar el routerLink y moverme entre componentes, da error de CORS por lo que se necesita configurar
+	 * Al usar el routerLink de Spring y moverme entre componentes, da error de CORS por lo que se necesita configurar
 	 * https://www.youtube.com/watch?v=jJTfuiyEqb8
 	 */
 	@Bean // Se crea un bean para configurar el CORS

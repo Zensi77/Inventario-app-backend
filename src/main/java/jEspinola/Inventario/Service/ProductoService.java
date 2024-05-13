@@ -1,5 +1,6 @@
 package jEspinola.Inventario.Service;
 
+import jEspinola.Inventario.Interfaces.IProductoService;
 import jEspinola.Inventario.Model.Producto;
 import jEspinola.Inventario.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,19 @@ public class ProductoService implements IProductoService {
     @Override
     public void eliminarProducto(int idProducto) {
         this.productoRepository.deleteById(idProducto);
+    }
+
+    @Override
+    public void modificarCantidad(int id, boolean incrementar) {
+        int cantidad;
+        if (incrementar)  cantidad = 1;
+        else  cantidad = -1;
+
+        Producto producto = this.productoRepository.findById(id).orElse(null);
+        if (producto != null) {
+            producto.setExistencia(producto.getExistencia() + cantidad);
+            this.productoRepository.save(producto); // Se guarda el producto con la nueva cantidad si ya existe
+        }
+
     }
 }

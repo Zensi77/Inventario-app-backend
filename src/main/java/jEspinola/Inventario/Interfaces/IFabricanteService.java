@@ -1,7 +1,6 @@
-package jEspinola.Inventario.Service;
+package jEspinola.Inventario.Interfaces;
 
 import jEspinola.Inventario.Model.Fabricante;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
