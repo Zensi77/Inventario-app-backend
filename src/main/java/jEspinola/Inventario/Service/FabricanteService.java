@@ -1,29 +1,30 @@
 package jEspinola.Inventario.Service;
 
 import jEspinola.Inventario.Model.Fabricante;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import jEspinola.Inventario.Repository.FabricanteRepository;
 
 import java.util.List;
 
 @Service // Se indica que esta clase es un servicio, es decir, se encarga de la lógica de negocio
 public class FabricanteService implements IFabricanteService{
+    @Autowired // Se inyecta la dependencia de FabricanteRepository
+    private FabricanteRepository fabricanteRepository;
+
     @Override
     public List<Fabricante> listarFabricantes() {
-        return null;
+        return fabricanteRepository.findAll();
     }
 
     @Override
-    public void registrarFabricante(Fabricante fabricante) {
-
+    public Fabricante registrarFabricante(Fabricante fabricante) {
+        return fabricanteRepository.save(fabricante); // Se guarda el fabricante
     }
 
     @Override
-    public void modificarFabricante(Fabricante fabricante, int id) {
-
-    }
-
-    @Override
-    public void eliminarFabricante(Fabricante fabricante) {
+    public void eliminarFabricante(int idFabricante) {
+        fabricanteRepository.deleteById(idFabricante);
 
     }
 }
