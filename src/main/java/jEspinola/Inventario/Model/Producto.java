@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.ManyToAny;
+import jakarta.persistence.EmbeddedId;
+
 
 @Entity // Indica que esta clase es una entidad
 @NoArgsConstructor // Genera un constructor vacío
@@ -13,10 +14,12 @@ import org.hibernate.annotations.ManyToAny;
 @Data // Genera todos los getters y setters
 @ToString // Genera el método toString
 public class Producto {
-    @Id // Indica que este campo es la llave primaria
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY) // Indica que este campo es autoincrementable
-    @Column(name = "id_producto") // Indica el nombre de la columna en la base de datos
-    private int id_producto;
+    @EmbeddedId // Indica que este campo es la llave primaria compuesta por dos campos
+    private ProductoId id;
+
+    @ManyToOne // Indica que esta relación es de muchos a uno
+    @JoinColumn(name = "id_almacen", updatable = false, insertable = false) // Indica el nombre de la columna en la base de datos
+    private Almacen almacen;
 
     @Column(name = "nombre") // Indica el nombre de la columna en la base de datos
     private String nombre;
@@ -33,5 +36,5 @@ public class Producto {
     @ManyToOne // Indica que esta relación es de muchos a uno
     @JoinColumn(name="id_fabricante", referencedColumnName = "id_fabricante") // Indica el nombre de la columna en la base de datos
     private Fabricante fabricante;
-
 }
+
