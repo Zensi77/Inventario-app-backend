@@ -1,8 +1,6 @@
 package jEspinola.Inventario.Controller;
 
-import jEspinola.Inventario.Model.Almacen;
 import jEspinola.Inventario.Model.Producto;
-import jEspinola.Inventario.Model.ProductoId;
 import jEspinola.Inventario.Repository.FabricanteRepository;
 import jEspinola.Inventario.Service.ProductoService;
 import org.slf4j.Logger;
@@ -36,9 +34,6 @@ public class ProductoController {
     public void registrarProducto(@RequestBody Producto producto) { // Se indica que se recibirá un objeto producto en formato JSON
         logger.info("Registrando producto");
         logger.info(producto.toString()); // Se muestra el producto en la consola
-        // De esta forma se puede obtener el fabricante por su id y asignarlo al producto
-        // Fabricante fabricante = fabricanteRepository.findById(producto.getFabricante()).orElse(null); // Se obtiene el fabricante por su id
-        // producto.setFabricante(fabricante); // Se asigna el fabricante al producto
         this.productoService.registrarProducto(producto); // Se guarda el producto
     }
 }

@@ -17,9 +17,6 @@ public class ProductoService implements IProductoService {
     @Autowired // Se inyecta la dependencia de ProductoRepository
     private ProductoRepository productoRepository;
 
-    @Autowired
-    private AlmacenService almacenService;
-
     @Override
     public List<Producto> listarProductos() {
         return this.productoRepository.findAll(); // Se obtienen todos los productos
@@ -32,13 +29,7 @@ public class ProductoService implements IProductoService {
     @Override
     @Transactional // Se indica que este método es transaccional, es decir, se ejecuta todo o nada
     public void registrarProducto(Producto producto) {
-        Producto productoExistente = this.productoRepository.findById(producto.getId()).orElse(null);
-        if (productoExistente != null) {
-            productoExistente.setExistencia(productoExistente.getExistencia() + producto.getExistencia());
-            this.productoRepository.save(productoExistente); // Se guarda el producto con la nueva cantidad si ya existe
-        } else {
-            this.productoRepository.save(producto); // Se guarda el producto si no existe
-        }
+        this.productoRepository.save(producto); // Se guarda el producto
     }
 
     @Override
@@ -48,15 +39,5 @@ public class ProductoService implements IProductoService {
 
     @Override
     public void modificarCantidad(int id, boolean incrementar) {
-        int cantidad;
-        if (incrementar)  cantidad = 1;
-        else  cantidad = -1;
-
-        Producto producto = this.productoRepository.findById(id).orElse(null);
-        if (producto != null) {
-            producto.setExistencia(producto.getExistencia() + cantidad);
-            this.productoRepository.save(producto); // Se guarda el producto con la nueva cantidad si ya existe
-        }
-
     }
 }

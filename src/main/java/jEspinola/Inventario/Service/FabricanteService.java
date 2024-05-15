@@ -26,6 +26,5 @@ public class FabricanteService implements IFabricanteService {
     @Override
     public void eliminarFabricante(int idFabricante) {
         fabricanteRepository.deleteById(idFabricante);
-
     }
 }
