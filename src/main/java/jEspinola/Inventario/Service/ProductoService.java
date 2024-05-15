@@ -1,16 +1,13 @@
 package jEspinola.Inventario.Service;
 
 import jEspinola.Inventario.Interfaces.IProductoService;
-import jEspinola.Inventario.Model.Almacen;
 import jEspinola.Inventario.Model.Producto;
 import jEspinola.Inventario.Repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jEspinola.Inventario.Service.AlmacenService;
-
 import java.util.List;
-import java.util.Optional;
+import java.sql.*;
 
 @Service // Se indica que esta clase es un servicio, es decir, se encarga de la lógica de negocio
 public class ProductoService implements IProductoService {
@@ -22,12 +19,33 @@ public class ProductoService implements IProductoService {
         return this.productoRepository.findAll(); // Se obtienen todos los productos
     }
 
-    public Producto buscarProducto(int id) {
-        return this.productoRepository.findById(id).orElse(null); // Se obtiene el producto por su id
+    @Override
+    public Producto buscarProductoId(int idProducto) {
+        return this.productoRepository.findById(idProducto).get(); // Se obtiene el producto por su id
     }
 
     @Override
-    @Transactional // Se indica que este método es transaccional, es decir, se ejecuta todo o nada
+    public Producto buscarProductoParametro(String cadena) {
+        Producto producto = new Producto();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:330/inventario", "root", "root");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM producto WHERE nombre LIKE '%" + cadena + "%'");
+            if (rs.next()) {
+                producto.setId_producto(rs.getInt("id_producto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                return producto;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return producto;
+    }
+
+    @Override
     public void registrarProducto(Producto producto) {
         this.productoRepository.save(producto); // Se guarda el producto
     }
@@ -37,7 +55,4 @@ public class ProductoService implements IProductoService {
         this.productoRepository.deleteById(idProducto);
     }
 
-    @Override
-    public void modificarCantidad(int id, boolean incrementar) {
-    }
 }

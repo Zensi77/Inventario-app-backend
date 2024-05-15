@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IProductoService {
     public List<Producto> listarProductos();
-    public Producto buscarProducto(int id);
+    public Producto buscarProductoId(int idProducto);
+    public Producto buscarProductoParametro(String cadena);
     public void registrarProducto(Producto producto);
     public void eliminarProducto(int idProducto);
-    public void modificarCantidad(int id, boolean incrementar);
 }
