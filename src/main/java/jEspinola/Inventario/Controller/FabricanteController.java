@@ -4,6 +4,7 @@ import jEspinola.Inventario.Model.Fabricante;
 import jEspinola.Inventario.Service.FabricanteService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import java.util.List;
@@ -29,6 +30,22 @@ public class FabricanteController {
         logger.info("Registrando fabricante");
         logger.info(fabricante.toString()); // Se muestra el fabricante en la consola
         this.fabricanteService.registrarFabricante(fabricante); // Se guarda el fabricante
+    }
+
+    @DeleteMapping("/fabricantes/{idFabricante}")
+    public void eliminarFabricante(@PathVariable int idFabricante) { // Se indica que se recibirá un parámetro en la URL
+        logger.info("Eliminando fabricante");
+        logger.info("ID: " + idFabricante); // Se muestra el ID del fabricante en la consola
+        this.fabricanteService.eliminarFabricante(idFabricante); // Se elimina el fabricante
+    }
+
+    @PutMapping("/fabricantes/{idFabricante}")
+    public ResponseEntity<Fabricante> actualizarFabricante(@PathVariable int idFabricante, @RequestBody Fabricante fabricante) { // Se indica que se recibirá un parámetro en la URL y un objeto Fabricante en formato JSON
+        logger.info("Actualizando fabricante");
+        logger.info("ID: " + idFabricante); // Se muestra el ID del fabricante en la consola
+        logger.info(fabricante.toString()); // Se muestra el fabricante en la consola
+        Fabricante fabricanteActualizado = this.fabricanteService.registrarFabricante(fabricante); // Se actualiza el fabricante
+        return ResponseEntity.ok().body(fabricanteActualizado); // Se retorna el fabricante actualizado
     }
 
 }

@@ -25,8 +25,21 @@ public class AlmacenController {
     }
 
     @PostMapping("/almacenes")
-    public void resgritarAlmacen(@RequestBody Almacen almacen) {
+    public void registrarAlmacen(@RequestBody Almacen almacen) {
         logger.info("Registrando almacen");
+        logger.info(almacen.toString());
+        this.almacenService.registrarAlmacen(almacen);
+    }
+
+    @DeleteMapping("/almacenes/{idAlmacen}")
+    public void eliminarAlmacen(@PathVariable int idAlmacen) {
+        logger.info("Eliminando almacen con id: " + idAlmacen);
+        this.almacenService.eliminarAlmacen(idAlmacen);
+    }
+
+    @PutMapping("/almacenes/{idAlmacen}")
+    public void actualizarAlmacen(@PathVariable int idAlmacen, @RequestBody Almacen almacen) {
+        logger.info("Actualizando almacen con id: " + idAlmacen);
         logger.info(almacen.toString());
         this.almacenService.registrarAlmacen(almacen);
     }

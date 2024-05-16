@@ -28,8 +28,8 @@ public class ProductoService implements IProductoService {
     public Producto buscarProductoParametro(String cadena) {
         Producto producto = new Producto();
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:330/inventario", "root", "root");
-            Statement stmt = conn.createStatement();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:330/inventario", "root", "root");
+            Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM producto WHERE nombre LIKE '%" + cadena + "%'");
             if (rs.next()) {
                 producto.setId_producto(rs.getInt("id_producto"));

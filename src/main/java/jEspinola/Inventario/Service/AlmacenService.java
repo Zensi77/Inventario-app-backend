@@ -5,7 +5,6 @@ import jEspinola.Inventario.Model.Almacen;
 import jEspinola.Inventario.Repository.AlmacenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
