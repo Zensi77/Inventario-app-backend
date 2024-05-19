@@ -83,11 +83,6 @@ public class ProductoService implements IProductoService {
         producto.setImagen(uploadDir + fileName); // Se guarda la ruta de la imagen en la base de datos
         return uploadDir + fileName;
     }
-
-    public byte[] obtenerImagen(String nombreImagen) throws IOException {
-        Path filePath = Paths.get(uploadDir, nombreImagen); // Se crea la ruta donde se encuentra la imagen
-        return Files.readAllBytes(filePath);
-    }
 }
 
 
