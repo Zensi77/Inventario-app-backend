@@ -18,6 +18,11 @@ public class FabricanteService implements IFabricanteService {
         return fabricanteRepository.findAll();
     }
 
+    public Fabricante obtenerFabricante(int idFabricante) {
+        return fabricanteRepository.findById(idFabricante).orElse(null);
+    }
+
+
     @Override
     public Fabricante registrarFabricante(Fabricante fabricante) {
         return fabricanteRepository.save(fabricante); // Se guarda el fabricante
@@ -27,4 +32,5 @@ public class FabricanteService implements IFabricanteService {
     public void eliminarFabricante(int idFabricante) {
         fabricanteRepository.deleteById(idFabricante);
     }
+
 }

@@ -25,6 +25,14 @@ public class FabricanteController {
             return fabricantes;
         }
 
+        @GetMapping("/fabricantes/{idFabricante}")
+        public Fabricante obtenerFabricante(@PathVariable int idFabricante) { // Se indica que se recibirá un parámetro en la URL
+            logger.info("Obteniendo fabricante");
+            logger.info("ID: " + idFabricante); // Se muestra el ID del fabricante en la consola
+
+            return this.fabricanteService.obtenerFabricante(idFabricante); // Se obtiene el fabricante
+        }
+
         @PostMapping("/fabricantes")
     public void registrarFabricante(@RequestBody Fabricante fabricante) { // Se indica que se recibirá un objeto Fabricante en formato JSON
         logger.info("Registrando fabricante");

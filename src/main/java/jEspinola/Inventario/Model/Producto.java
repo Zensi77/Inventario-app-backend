@@ -28,7 +28,11 @@ public class Producto {
     @Column(name = "precio")
     private double precio;
 
-    @ManyToOne // Indica que esta relación es de muchos a uno
+    @Lob // Indica que este campo es de tipo BLOB(Binario)
+    @Column(name = "imagen", columnDefinition = "text")
+    private String imagen;
+
+    @ManyToOne(cascade = {CascadeType.ALL}) // Indica que esta relación es de muchos a uno
     @JoinColumn(name = "id_fabricante", referencedColumnName = "id_fabricante")
     private Fabricante fabricante;
 
