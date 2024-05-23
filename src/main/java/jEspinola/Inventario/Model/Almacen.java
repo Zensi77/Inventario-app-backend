@@ -8,12 +8,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity // Indica que esta clase es una entidad
 @NoArgsConstructor // Genera un constructor vacío
 @AllArgsConstructor // Genera un constructor con todos los argumentos
 @Data // Genera todos los getters y setters
 @ToString // Genera el método toString
+@SQLDelete(sql = "UPDATE almacen SET is_deleted = true WHERE id_almacen = ?")
+@Where(clause = "is_deleted = false")
 public class Almacen {
     @Id // Indica que este campo es la llave primaria
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY) // Indica que este campo es autoincrementable
@@ -28,4 +32,7 @@ public class Almacen {
 
     @Column(name = "telefono") // Indica el nombre de la columna en la base de datos
     private String telefono;
+
+    @Column(name= "is_deleted", columnDefinition = "boolean default false")
+    private boolean isDeleted;
 }

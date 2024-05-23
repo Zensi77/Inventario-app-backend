@@ -29,7 +29,7 @@ public class ProductoService implements IProductoService {
 
     @Override
     public List<Producto> listarProductos() {
-        return this.productoRepository.findAll(); // Se obtienen todos los productos
+        return this.productoRepository.findAll(); // Se obtienen todos los productos que no han sido eliminados
     }
 
     @Override

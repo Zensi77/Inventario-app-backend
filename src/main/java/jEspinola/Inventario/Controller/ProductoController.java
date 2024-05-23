@@ -35,8 +35,6 @@ public class ProductoController {
 
     @Autowired // Se inyecta la dependencia de ProductoService
     private ProductoService productoService;
-    @Autowired
-    private FabricanteRepository fabricanteRepository;
 
     //http://localhost:8080/inventario-app/Productos
     @GetMapping("/productos") // Se indica que este método se ejecutará cuando se haga una petición GET a la URL base
@@ -66,16 +64,17 @@ public class ProductoController {
 
     @GetMapping("/productos/{idProducto}")
     // Se indica que este método se ejecutará cuando se haga una petición GET a la URL base
-    public Producto buscarProductoId(@PathVariable int idProducto) { // Se indica que se recibirá un parámetro en la URL
+    public ResponseEntity<Producto> buscarProductoId(@PathVariable int idProducto) { // Se indica que se recibirá un parámetro en la URL
         logger.info("Buscando producto con id: " + idProducto);
         Producto producto = this.productoService.buscarProductoId(idProducto); // Se obtiene el producto por su id
         logger.info(producto.toString()); // Se muestra el producto en la consola
-        return producto;
+
+        return ResponseEntity.ok(producto); // Se retorna el producto
     }
 
     @PostMapping(value = "/productos", consumes = {"multipart/form-data"})
     // Consumes indica que se recibirá un formulario con datos y archivos
-    public ResponseEntity<Producto> registrarProducto(@RequestPart("producto") Producto producto, @RequestPart("imagen") MultipartFile imagen) { // Se indica que se recibirá un objeto producto en formato JSON y un archivo
+    public ResponseEntity<Producto> registrarProducto(@RequestPart("producto") Producto producto, @RequestPart(value = "imagen", required = false) MultipartFile imagen) { // Se indica que se recibirá un objeto producto en formato JSON y un archivo
         logger.info("Registrando producto");
 
         try {
