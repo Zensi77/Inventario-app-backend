@@ -1,11 +1,8 @@
 package jEspinola.Inventario.Controller;
 
 import jEspinola.Inventario.Model.Almacen;
-import jEspinola.Inventario.Model.Producto;
-import jEspinola.Inventario.Model.ProductoAlmacen;
 import jEspinola.Inventario.Service.AlmacenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
