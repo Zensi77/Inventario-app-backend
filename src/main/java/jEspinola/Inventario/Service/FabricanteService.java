@@ -2,9 +2,9 @@ package jEspinola.Inventario.Service;
 
 import jEspinola.Inventario.Interfaces.IFabricanteService;
 import jEspinola.Inventario.Model.Fabricante;
+import jEspinola.Inventario.Repository.FabricanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jEspinola.Inventario.Repository.FabricanteRepository;
 
 import java.util.List;
 

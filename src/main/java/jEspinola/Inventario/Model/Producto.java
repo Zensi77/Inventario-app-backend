@@ -47,14 +47,15 @@ public class Producto {
     @Column(name = "imagen", columnDefinition = "text default null")
     private String imagen;
 
-    @Column(name = "mime_type", columnDefinition = "text default null") // Nuevo campo para almacenar el tipo MIME de la imagen (image/png, image/jpeg, etc.)
+    @Column(name = "mime_type", columnDefinition = "text default null")
+    // Nuevo campo para almacenar el tipo MIME de la imagen (image/png, image/jpeg, etc.)
     private String mimeType; // Nuevo campo para almacenar el tipo MIME
 
     @ManyToOne // Indica que esta relación es de muchos a uno
     @JoinColumn(name = "id_fabricante", referencedColumnName = "id_fabricante")
     private Fabricante fabricante;
 
-    @Column(name= "is_deleted", columnDefinition = "boolean default false")
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted;
 }
 

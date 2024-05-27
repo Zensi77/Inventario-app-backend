@@ -1,7 +1,5 @@
 package jEspinola.Inventario.Controller;
 
-import jEspinola.Inventario.Model.Almacen;
-import jEspinola.Inventario.Model.Producto;
 import jEspinola.Inventario.Model.ProductoAlmacen;
 import jEspinola.Inventario.Service.ProductoAlmacenService;
 import org.slf4j.Logger;
@@ -44,7 +42,7 @@ public class ProductoAlmacenController {
 
     @DeleteMapping("/productos-almacen/{idProducto}/{idAlmacen}")
     public ResponseEntity<?> eliminarProductoAlmacen(@PathVariable int idProducto, @PathVariable int idAlmacen) {
-        logger.info("Eliminando producto almacen con id "+idAlmacen+" e id_producto "+ idProducto);
+        logger.info("Eliminando producto almacen con id " + idAlmacen + " e id_producto " + idProducto);
         this.productoAlmacenService.eliminarProductoAlmacen(idProducto, idAlmacen);
         return ResponseEntity.ok().build();
     }

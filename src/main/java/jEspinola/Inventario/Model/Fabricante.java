@@ -1,6 +1,9 @@
 package jEspinola.Inventario.Model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +20,8 @@ import org.hibernate.annotations.Where;
 @Where(clause = "is_deleted = false")
 public class Fabricante {
     @Id // Indica que este campo es la llave primaria
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY) // Indica que este campo es autoincrementable
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    // Indica que este campo es autoincrementable
     @Column(name = "id_fabricante") // Indica el nombre de la columna en la base de datos
     private int id_fabricante;
 
@@ -30,6 +34,6 @@ public class Fabricante {
     @Column(name = "telefono") // Indica el nombre de la columna en la base de datos
     private String telefono;
 
-    @Column(name= "is_deleted", columnDefinition = "boolean default false")
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted;
 }

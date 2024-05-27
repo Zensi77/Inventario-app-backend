@@ -20,7 +20,8 @@ import org.hibernate.annotations.Where;
 @Where(clause = "is_deleted = false")
 public class Almacen {
     @Id // Indica que este campo es la llave primaria
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY) // Indica que este campo es autoincrementable
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    // Indica que este campo es autoincrementable
     @Column(name = "id_almacen") // Indica el nombre de la columna en la base de datos
     private int id_almacen;
 
@@ -33,6 +34,6 @@ public class Almacen {
     @Column(name = "telefono") // Indica el nombre de la columna en la base de datos
     private String telefono;
 
-    @Column(name= "is_deleted", columnDefinition = "boolean default false")
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted;
 }

@@ -7,13 +7,15 @@ import jEspinola.Inventario.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.sql.*;
+import java.util.List;
 import java.util.UUID;
 
 @Service // Se indica que esta clase es un servicio, es decir, se encarga de la lógica de negocio

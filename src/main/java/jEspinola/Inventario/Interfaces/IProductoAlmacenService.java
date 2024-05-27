@@ -1,14 +1,15 @@
 package jEspinola.Inventario.Interfaces;
 
-import jEspinola.Inventario.Model.Almacen;
-import jEspinola.Inventario.Model.Producto;
 import jEspinola.Inventario.Model.ProductoAlmacen;
 
 import java.util.List;
 
 public interface IProductoAlmacenService {
-    public void registrarProductoAlmacen(ProductoAlmacen productoAlmacen);
-    public void eliminarProductoAlmacen(int idProducto, int idAlmacen);
-    public void actualizarProductoAlmacen(int producto, int almacen, int cantidad);
-    public List<ProductoAlmacen> listarProductosAlmacen(int idAlmacen);
+    void registrarProductoAlmacen(ProductoAlmacen productoAlmacen);
+
+    void eliminarProductoAlmacen(int idProducto, int idAlmacen);
+
+    void actualizarProductoAlmacen(int producto, int almacen, int cantidad);
+
+    List<ProductoAlmacen> listarProductosAlmacen(int idAlmacen);
 }

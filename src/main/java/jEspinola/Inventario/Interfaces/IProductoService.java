@@ -5,9 +5,13 @@ import jEspinola.Inventario.Model.Producto;
 import java.util.List;
 
 public interface IProductoService {
-    public List<Producto> listarProductos();
-    public Producto buscarProductoId(int idProducto);
-    public Producto buscarProductoParametro(String cadena);
-    public void registrarProducto(Producto producto);
-    public void eliminarProducto(int idProducto);
+    List<Producto> listarProductos();
+
+    Producto buscarProductoId(int idProducto);
+
+    Producto buscarProductoParametro(String cadena);
+
+    void registrarProducto(Producto producto);
+
+    void eliminarProducto(int idProducto);
 }

@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 
-public interface ProductoAlmacenRepository extends JpaRepository<ProductoAlmacen, Integer>{
+public interface ProductoAlmacenRepository extends JpaRepository<ProductoAlmacen, Integer> {
 
-    @Query(value = "SELECT * FROM producto_almacen WHERE id_almacen = ?1", nativeQuery = true)
+    @Query("SELECT pa FROM ProductoAlmacen pa WHERE pa.almacen.id_almacen = ?1 AND pa.producto.isDeleted = false")
     List<ProductoAlmacen> listarProductosAlmacen(int idAlmacen);
 }

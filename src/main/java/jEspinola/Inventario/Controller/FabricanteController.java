@@ -2,11 +2,12 @@ package jEspinola.Inventario.Controller;
 
 import jEspinola.Inventario.Model.Fabricante;
 import jEspinola.Inventario.Service.FabricanteService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
+
 import java.util.List;
 
 @RestController // Se indica que esta clase es un controlador REST de Spring
@@ -16,24 +17,24 @@ public class FabricanteController {
     private static final Logger logger = LoggerFactory.getLogger(ProductoController.class); // Se crea un logger para mostrar mensajes en la consola
 
     @Autowired
-        private FabricanteService fabricanteService; // Se inyecta la dependencia de FabricanteService
+    private FabricanteService fabricanteService; // Se inyecta la dependencia de FabricanteService
 
-        @GetMapping("/fabricantes")
-        public List<Fabricante> listarFabricantes() {
-            List<Fabricante> fabricantes = this.fabricanteService.listarFabricantes(); // Se obtienen todos los fabricantes
-            logger.info("Listando fabricantes");
-            return fabricantes;
-        }
+    @GetMapping("/fabricantes")
+    public List<Fabricante> listarFabricantes() {
+        List<Fabricante> fabricantes = this.fabricanteService.listarFabricantes(); // Se obtienen todos los fabricantes
+        logger.info("Listando fabricantes");
+        return fabricantes;
+    }
 
-        @GetMapping("/fabricantes/{idFabricante}")
-        public Fabricante obtenerFabricante(@PathVariable int idFabricante) { // Se indica que se recibirá un parámetro en la URL
-            logger.info("Obteniendo fabricante");
-            logger.info("ID: " + idFabricante); // Se muestra el ID del fabricante en la consola
+    @GetMapping("/fabricantes/{idFabricante}")
+    public Fabricante obtenerFabricante(@PathVariable int idFabricante) { // Se indica que se recibirá un parámetro en la URL
+        logger.info("Obteniendo fabricante");
+        logger.info("ID: " + idFabricante); // Se muestra el ID del fabricante en la consola
 
-            return this.fabricanteService.obtenerFabricante(idFabricante); // Se obtiene el fabricante
-        }
+        return this.fabricanteService.obtenerFabricante(idFabricante); // Se obtiene el fabricante
+    }
 
-        @PostMapping("/fabricantes")
+    @PostMapping("/fabricantes")
     public void registrarFabricante(@RequestBody Fabricante fabricante) { // Se indica que se recibirá un objeto Fabricante en formato JSON
         logger.info("Registrando fabricante");
         logger.info(fabricante.toString()); // Se muestra el fabricante en la consola
